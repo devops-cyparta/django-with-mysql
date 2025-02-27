@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy the project files into the container
-COPY django-with-mysql/ /app/
+COPY . /app/
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r /app/requirements.txt
