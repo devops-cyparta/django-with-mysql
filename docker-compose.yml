@@ -5,7 +5,7 @@ services:
     container_name: flask_app
     build: .
     ports:
-      - "${APP_PORT}:8080"
+      - "${APP_PORT}:8000"
     environment:
       - DB_HOST=mysql_db
       - DB_USER=user
