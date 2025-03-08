@@ -25,7 +25,7 @@ SECRET_KEY = 'tp&#%9%tjxr+k=d!jss9%s4)m)c5xc%(5th4xve12g%aee3h$p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -95,11 +95,11 @@ WSGI_APPLICATION = 'djangoProject1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangodb',
-        'USER': 'django',
-        'PASSWORD': 'django_password',
-        'HOST': 'mysql-container',  # Container name instead of IP
-        'PORT': '3306',  # MySQL runs on 3306 inside the container
+        'NAME': os.getenv('DB_NAME', 'djangodb'),
+        'USER': os.getenv('DB_USER', 'django'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'django_password'),
+        'HOST': os.getenv('DB_HOST', 'mysql_db'),  # Match docker-compose service name
+        'PORT': os.getenv('DB_PORT', '3306'),  # MySQL runs on 3306 inside the container
     }
 }
 
@@ -140,4 +140,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 STATIC_URL = '/static/'
